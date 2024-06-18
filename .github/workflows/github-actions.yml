@@ -1,1 +1,15 @@
+name: Postman test
+run-name: ${{ github.actor }} está executando test com o Postman
+on: [push]
+jobs:
+    execute-test-posman:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Configurando o Nodejs
+              uses: actions/setup-node@v4
+              with:
+                node-version: latest
+            - run: npm install -g newman
+            - run: newman run './Postman Collections/Teste.json'
 
